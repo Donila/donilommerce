@@ -1,0 +1,11 @@
+{
+	"Shop": "Market",
+	"Home": "Home",
+	"Cart": "Cart",
+	"GoToCart": "Go to cart",
+	"EmptyCart": "Cart is empty",
+	"Total": "Total",
+	"Count": "Count",
+	"Price": "Price",
+	"Remove": "Remove"
+}

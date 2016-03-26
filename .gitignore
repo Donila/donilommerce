@@ -2,4 +2,5 @@
 /dist
 /.tmp
 /.sass-cache
+/.idea
 /client/bower_components

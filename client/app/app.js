@@ -9,7 +9,7 @@
  * Main module of the application.
  */
 angular
-	.module('clientApp', [
+	.module('Donilommerce', [
 		'ngAnimate',
 		'ngCookies',
 		'ngResource',
@@ -33,6 +33,21 @@ angular
 				controller: 'CartCtrl',
 				controllerAs: 'cart'
 			})
+			.when('/checkout', {
+				templateUrl: 'views/checkout.html',
+				controller: 'CheckoutCtrl',
+				controllerAs: 'checkout'
+			})
+			.when('/products/:id', {
+				templateUrl: 'views/product.html',
+				controller: 'ProductCtrl',
+				controllerAs: 'product'
+			})
+			.when('/products', {
+				templateUrl: 'views/products.html',
+				controller: 'ProductsCtrl',
+				controllerAs: 'products'
+			})
 			.otherwise({
 				redirectTo: '/'
 			});
@@ -48,6 +63,10 @@ angular
 		delimiter: '::',
 		validTokens: new RegExp('^[\\w\\.-]+\\.[\\w\\s\\.-]+\\w(:.*)?$')
 	})
+	.value('currencySupported', [
+		{ name: 'USD', sign: '$', exchange: 0.00005 },
+		{ name: 'BYR', sign: 'бел. руб.', exchange: 1.00 }
+	])
 	.value('localeSupported', [
 		'en-US',
 		'ru-RU'
@@ -58,17 +77,22 @@ angular
 	})
 	.value('globalConfig', {
 		appName: 'Shop Name',
-		appNameKey: 'Shop'
+		appNameKey: 'Shop',
+		currency: 'USD',
+		language: 'en-US'
 	})
 	.constant('_', window._)
-	.run(function($rootScope, locale, Products) {
+	.constant('EVENT_CONSTANTS', {
+		CURRENCY_CHANGED: 'event_currency_changed'
+	})
+	.run(function($rootScope, locale, Currency, Language, localeFallbacks, globalConfig) {
 		$rootScope._ = window._;
-		$rootScope.locale = locale;
-		$rootScope.getLocale = locale.getLocale;
-		$rootScope.setLocale = locale.setLocale;
-		$rootScope.cartLength = Products.cartLength;
-		$rootScope.cartCost = Products.cartCost;
+
+		Currency.init();
+
+		Language.init();
+
 		locale.ready('common').then(function () {
-			locale.setLocale('en-US');
+			//locale.setLocale(globalConfig.language);
 		});
 	});

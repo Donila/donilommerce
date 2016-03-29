@@ -1,0 +1,6 @@
+<div>
+	<span ng-class="{'line-through': product.specialPrice}">{{(product.price * currency.exchange).toFixed(getToFixed())}} {{currency.sign}}</span>
+</div>
+<div ng-show="product.specialPrice">
+	<span>{{(product.specialPrice.price * currency.exchange).toFixed(getToFixed())}} {{currency.sign}}</span>
+</div>

@@ -43,6 +43,7 @@
     "jit-grunt": "^0.9.1",
     "jshint-stylish": "^1.0.0",
     "mongoose": "^4.4.9",
-    "time-grunt": "^1.0.0"
+    "time-grunt": "^1.0.0",
+    "xlsx": "^0.8.0"
   }
 }

@@ -1,0 +1,26 @@
+<div class="row jumbotron">
+	<div class="row">
+		<div class="col-md-4" ng-show="product.thumbnail">
+			<img class="image-average" ng-src="{{product.thumbnail}}"/>
+		</div>
+		<div class="col-md-4" ng-show="product.pictures[0]">
+			<img class="image-average" ng-src="{{product.pictures[0]}}"/>
+		</div>
+		<div class="col-md-4" ng-show="product.pictures[1]">
+			<img class="image-average" ng-src="{{product.pictures[1]}}"/>
+		</div>
+	</div>
+
+	<div>
+		<h2>{{product.name}}</h2>
+
+		<h4>
+			<don-price product="product"></don-price>
+		</h4>
+		<button class="btn btn-success" ng-click="addToCart(product)">{{locale.getString('common.AddToCart')}} <i class="glyphicon glyphicon-shopping-cart"></i>
+		</button>
+
+		<h5>{{product.shortDescription}}</h5>
+		<span ng-bind-html="product.fullDescription"></span>
+	</div>
+</div>

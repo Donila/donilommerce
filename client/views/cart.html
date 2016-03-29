@@ -1,19 +1,60 @@
 <div class="row jumbotron">
-	<table class="table table-hover" ng-show="products && products.length > 0">
-		<th>
-			<td>Count</td>
-			<td>Price</td>
-			<td>Remove</td>
-			<td>Total</td>
-		</th>
-		<tr ng-repeat="p in products">
-			<td>{{p.product.name}}</td>
-			<td>{{p.count}}</td>
-			<td>{{p.product.price}}</td>
-			<td><button class="btn btn-success" ng-click="removeFromCart(p.product)"><i class="glyphicon glyphicon-trash"></i></button></td>
-			<td>{{p.product.price * p.count}}</td>
-		</tr>
-	</table>
-	<h3 ng-show="!products || products.length == 0"><span i18n="common.EmptyCart"></span></h3>
-	<h4>{{totalValue()}}</h4>
+	<div ng-show="!isEmpty()">
+		<h2 i18n="common.Cart"></h2>
+		<div ng-show="!isEmpty()">
+			<div class="row padding-bottom-10">
+				<div class="col-md-4"></div>
+				<div class="col-md-1" i18n="common.Count"></div>
+				<div class="col-md-3" i18n="common.Price"></div>
+				<div class="col-md-1" i18n="common.Remove"></div>
+				<div class="col-md-3" i18n="common.Total"></div>
+			</div>
+			<div ng-repeat="p in products" class="row cart-product">
+				<div class="col-md-4">
+					<div>
+						<a href="{{'#/products/' + p.product._id}}">{{p.product.name}}</a>
+					</div>
+					<div>
+						<img class="image-average" ng-src="{{p.product.thumbnail}}"/>
+					</div>
+				</div>
+				<div class="col-md-1">{{p.count}}</div>
+				<div class="col-md-3">
+					<don-price product="p.product"></don-price>
+				</div>
+				<div class="col-md-1">
+					<button class="btn btn-danger" ng-click="removeFromCart(p.product)"><i
+						class="glyphicon glyphicon-trash"></i></button>
+				</div>
+				<div class="col-md-3">
+					<don-simple-price price="getProductPrice(p.product) * p.count"></don-simple-price>
+				</div>
+			</div>
+			<div class="row cart-product">
+				<div class="col-md-4">
+					<h4>{{locale.getString('common.Total') + ':'}}</h4>
+				</div>
+				<div class="col-md-2"></div>
+				<div class="col-md-3">
+					<button class="btn btn-danger" ng-click="clear()">{{locale.getString('common.ClearCart')}} <i
+						class="glyphicon glyphicon-trash"></i></button>
+				</div>
+				<div class="col-md-3">
+					<don-simple-price price="cartCost()"></don-simple-price>
+				</div>
+			</div>
+		</div>
+		<a href="#/checkout">
+			<button class="btn btn-info btn-lg"><span>{{locale.getString('common.Checkout')}}</span> <i
+				class="fa fa-shopping-cart"></i></button>
+		</a>
+	</div>
+
+	<div ng-show="isEmpty()">
+		<h3 ng-show="isEmpty()"><span i18n="common.EmptyCart"></span></h3>
+		<a href="#/products">
+			<button class="btn btn-primary" i18n="common.Products"></button>
+		</a>
+	</div>
+
 </div>

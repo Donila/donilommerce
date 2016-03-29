@@ -1,0 +1,25 @@
+<div class="row jumbotron">
+	<div ng-show="loading">
+		<i class="fa fa-spinner fa-spin fa-3x"></i>
+	</div>
+
+	<div class="col-md-3 product" ng-class="{ 'special-price': product.specialPrice }"
+		 ng-repeat="product in products">
+		<a href="{{'#/products/' + product._id}}">
+			<img ng-src="{{product.thumbnail}}"/>
+		</a>
+		<div class="info-small">
+			<a href="{{'#/products/' + product._id}}">
+				<h6>{{product.name}}</h6>
+			</a>
+			<div>
+				<!--<don-simple-price price="product.price"></don-simple-price>-->
+				<don-price product="product"></don-price>
+			</div>
+			<!--<div>
+				<don-price currency="currency" price="product.specialPrice.price" ng-show="product.specialPrice"></don-price>
+			</div>-->
+			<button class="btn btn-success" ng-click="addToCart(product)"><i class="glyphicon glyphicon-shopping-cart"></i></button>
+		</div>
+	</div>
+</div>

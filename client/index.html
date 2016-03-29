@@ -14,9 +14,10 @@
 	<link rel="stylesheet" href="styles/main.css">
 	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
 	<link rel="stylesheet" href="bower_components/angular-bootstrap/ui-bootstrap-csp.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<!-- endbuild -->
 </head>
-<body ng-app="clientApp">
+<body ng-app="Donilommerce">
 <!--[if lte IE 8]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
 	your browser</a> to improve your experience.</p>
@@ -48,6 +49,8 @@
 	ga('send', 'pageview');
 </script>
 
+<ng-include src="'app/modals/addedToCart.html'"></ng-include>
+
 <!-- build:js(.) scripts/vendor.js -->
 <!-- bower:js -->
 
@@ -72,10 +75,21 @@
 
 <!-- endbuild -->
 
-<script src="scripts/app.js"></script>
-<script src="scripts/controllers/main.js"></script>
-<script src="scripts/controllers/cart.js"></script>
-<script src="app/navbar.js"></script>
-<script src="app/products.js"></script>
+<script src="app/app.js"></script>
+<script src="app/controllers/main.js"></script>
+<script src="app/controllers/cart.js"></script>
+<script src="app/controllers/checkout.js"></script>
+<script src="app/controllers/navbar.js"></script>
+<script src="app/controllers/products.js"></script>
+<script src="app/controllers/product.js"></script>
+<script src="app/services/products.js"></script>
+<script src="app/services/cart.js"></script>
+<script src="app/services/currency.js"></script>
+<script src="app/services/language.js"></script>
+
+<script src="app/directives/price/price.js"></script>
+<script src="app/directives/price/simplePrice.js"></script>
+
+<script src="app/modals/addedToCart.js"></script>
 </body>
 </html>

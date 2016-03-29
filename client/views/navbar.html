@@ -1,4 +1,4 @@
-<div class="header" ng-controller="NavbarCtrl">
+<div ng-controller="NavbarCtrl">
 	<div class="navbar navbar-default" role="navigation">
 		<div class="container">
 			<div class="navbar-header">
@@ -13,7 +13,7 @@
 				<a class="navbar-brand" href="#/">{{getAppName()}}</a>
 			</div>
 
-			<div class="collapse navbar-collapse" id="js-navbar-collapse">
+			<span class="collapse navbar-collapse" id="js-navbar-collapse">
 
 				<ul class="nav navbar-nav">
 					<li ng-repeat="item in items" ng-class="{active: isActive(item.link)}">
@@ -24,10 +24,12 @@
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown">
 						<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-						   aria-expanded="false" style="padding-top: 10px; padding-bottom: 0;"><img ng-src="{{'images/' + locale.getLocale() + '.png'}}"> <span class="caret"></a>
+						   aria-expanded="false" style="padding-top: 10px; padding-bottom: 0;">
+							<img ng-src="{{'images/' + getLocale() + '.png'}}"> <span class="caret"></span>
+						</a>
 						<ul class="dropdown-menu">
-							<li><a ng-click="setLocale('en-US')">English <i class="glyphicon glyphicon-ok" ng-show="locale.getLocale() == 'en-US'" style="float: right;"></i></a></li>
-							<li><a ng-click="setLocale('ru-RU')">Русский <i class="glyphicon glyphicon-ok" ng-show="locale.getLocale() == 'ru-RU'" style="float: right;"></i></a></li>
+							<li><a ng-click="setLocale('en-US')">English <i class="glyphicon glyphicon-ok" ng-show="getLocale() == 'en-US'" style="float: right;"></i></a></li>
+							<li><a ng-click="setLocale('ru-RU')">Русский <i class="glyphicon glyphicon-ok" ng-show="getLocale() == 'ru-RU'" style="float: right;"></i></a></li>
 						</ul>
 					</li>
 				</ul>
@@ -36,14 +38,34 @@
 					<!--<li><a href="#/">Login</a></li>-->
 					<li class="dropdown">
 						<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-						   aria-expanded="false"> {{locale.getString('common.Cart')}} ({{cartLength()}}) <span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li ng-repeat="p in cart">
-								<a>{{p.product.name}} <span style="float:right;">({{p.count}})</span></a>
-							</li>
-							<li><a>Total: {{cartCost()}}</a></li>
-							<li><a href="#/cart">Go to cart >></a></li>
+						   aria-expanded="false">
+							<!--{{locale.getString('common.Cart')}} ({{cartLength()}}) -->
+							<div class="div-left">
+								<i class="fa fa-shopping-cart fa-2x"></i>
+							</div>
+							&nbsp<span>({{cartLength()}})</span>
+							<span class="caret"></span>
 
+						</a>
+						<ul class="dropdown-menu" style="width: 300px;">
+							<li ng-repeat="p in cart">
+								<a href="{{'#/products/' + p.product._id}}"><div class="cart-prod-menu">{{p.product.name}}</div>&nbsp<span style="float:right;">({{p.count}})</span></a>
+							</li>
+							<li><a href="#/cart">{{locale.getString('common.Total') + ': '}} <don-simple-price price="cartCost()"></don-simple-price></a></li>
+							<li><a href="#/cart">{{locale.getString('common.ToCart') + ' >>'}}</a></li>
+
+						</ul>
+					</li>
+				</ul>
+
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+						   aria-expanded="false">{{getCurrency().name}} ({{getCurrency().sign}}) <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li ng-repeat="currency in supportedCurrencies" ng-click="setCurrency(currency)">
+								<a>{{currency.name}} ({{currency.sign}})</a>
+							</li>
 						</ul>
 					</li>
 				</ul>

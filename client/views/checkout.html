@@ -1,0 +1,62 @@
+<div class="row jumbotron">
+	<div class="don-thin">
+		<div ng-show="!orderSubmitted">
+
+			<div class="alert alert-info" ng-repeat="p in cart">
+				<h4>
+					<a href="{{'#/products/' + p.product._id}}">{{p.product.name}}</a> x {{p.count}} =
+					<don-simple-price price="getProductPrice(p.product) * p.count"></don-simple-price>
+				</h4>
+			</div>
+
+			<h3>{{locale.getString('common.OrderPrice') + ': '}}
+				<don-simple-price price="cartCost()"></don-simple-price>
+			</h3>
+		</div>
+		<div ng-show="!orderSubmitted">
+			<form name="checkoutForm" class="don-form" novalidate>
+				<label for="checkoutEmail" i18n="common.Email"></label>
+				<input type="email" id="checkoutEmail" name="checkoutEmail" class="form-control"
+					   ng-model="customer.email" required=""/>
+
+				<div class="alert alert-danger" ng-show="checkoutForm.$submitted || form.checkoutEmail.$touched">
+					<span ng-show="checkoutForm.checkoutEmail.$error.required" i18n="common.EmailRequired">Tell us your email.</span>
+					<span ng-show="checkoutForm.checkoutEmail.$error.email" i18n="common.InvalidEmail"></span>
+				</div>
+
+				<label for="checkoutPhone" i18n="common.Phone"></label>
+				<input type="phone" id="checkoutPhone" name="checkoutPhone" class="form-control"
+					   ng-model="customer.phone" required=""/>
+
+				<div class="alert alert-danger"
+					 ng-show="checkoutForm.$submitted || checkoutForm.checkoutPhone.$touched">
+					<span ng-show="checkoutForm.checkoutPhone.$error.required" i18n="common.PhoneRequired"></span>
+				</div>
+
+				<label for="checkoutAddress" i18n="common.Address"></label>
+				<textarea type="text" id="checkoutAddress" name="checkoutAddress" class="form-control"
+						  ng-model="customer.address" required=""/>
+
+				<div class="alert alert-danger"
+					 ng-show="checkoutForm.$submitted || checkoutForm.checkoutAddress.$touched">
+					<span ng-show="checkoutForm.checkoutAddress.$error.required" i18n="common.AddressRequired"></span>
+				</div>
+				<div class="padding-top">
+					<button type="submit" class="btn btn-primary btn-lg" ng-click="submitForm(customer)">
+						{{locale.getString('common.OrderNow')}}
+					</button>
+				</div>
+			</form>
+		</div>
+
+		<div ng-show="orderSubmitted" class="row jumbotron">
+			<h3 i18n="common.OrderSubmitted"></h3>
+			<h4>{{locale.getString('common.Email') + ': ' + customer.email}}</h4>
+			<h4>{{locale.getString('common.Phone') + ': ' + customer.phone}}</h4>
+			<h4>{{locale.getString('common.Address') + ': ' + customer.address}}</h4>
+			<a href="#">
+				<button class="btn btn-primary" i18n="common.Ok"></button>
+			</a>
+		</div>
+	</div>
+</div>

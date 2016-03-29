@@ -13,7 +13,7 @@ router.get('/', function(req, res) {
     auth.getCurrentUser(function(user) {
         res.send('Current user: ' + user.name);
     });
-})
+});
 
 // POST /api/
 router.post('/', function(req, res) {

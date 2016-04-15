@@ -1,0 +1,83 @@
+<div class="row">
+	<div class="div-left">
+		<button class="btn btn-info btn-lg" ng-click="new()">Add category</button>
+	</div>
+</div>
+<div class="row admin-item">
+	<div class="col-md-4">
+		<strong>Category</strong>
+	</div>
+	<div class="col-md-4">
+		<span>Parent</span>
+	</div>
+</div>
+<div class="row admin-item" ng-show="newCategory">
+	<form name="newCategoryForm" id="newCategoryForm" novalidate>
+		<div class="col-md-4">
+			<div>
+				<label for="newCategoryName">Name</label>
+			</div>
+
+			<div>
+				<input class="form-control" ng-model="newCategory.name" id="newCategoryName" name="newCategoryName"/>
+			</div>
+		</div>
+
+		<div class="col-md-4">
+			<div>
+				<label>Parent category</label>
+			</div>
+
+			<div>
+				<select ng-model="newCategory.parentCategory" class="form-control">
+					<option value="">Root category</option>
+					<option ng-repeat="c in categories" value="{{c._id}}">{{c.name}}</option>
+				</select>
+			</div>
+		</div>
+
+		<div>
+			<button class="btn btn-success" ng-click="add()"><i class="fa fa-plus"></i></button>
+		</div>
+	</form>
+</div>
+
+<div class="row admin-item" ng-repeat="category in categories">
+	<div class="col-md-4">
+		<strong ng-show="!editedCategory || editedCategory._id != category._id">{{category.name}}</strong>
+		<input class="form-control" ng-model="editedCategory.name" ng-show="editedCategory && editedCategory._id == category._id" />
+	</div>
+	<div class="col-md-4">
+		<span ng-show="!editedCategory || editedCategory._id != category._id">{{findCategory(category.parentCategory)}}</span>
+		<select ng-model="editedCategory.parentCategory"
+				ng-show="editedCategory && editedCategory._id == category._id"
+				class="form-control">
+			<option value="">Root category</option>
+			<option ng-repeat="c in categories" value="{{c._id}}" ng-selected="c._id == editedCategory.parentCategory">{{c.name}}</option>
+		</select>
+	</div>
+	<div class="col-md-2">
+		<button class="btn btn-warning"
+				ng-click="startEdit(category)"
+				ng-show="!editedCategory || editedCategory._id != category._id">
+			<i class="fa fa-pencil"></i>
+		</button>
+		<button class="btn btn-success"
+				ng-click="save(category)"
+				ng-show="editedCategory && editedCategory._id == category._id">
+			<i class="fa fa-save"></i>
+		</button>
+		<button class="btn btn-danger"
+				ng-click="cancelEdit()"
+				ng-show="editedCategory && editedCategory._id == category._id">
+			<i class="fa fa-ban"></i>
+		</button>
+	</div>
+	<div class="col-md-2">
+		<button class="btn btn-danger"
+				don-confirmed-click="delete(category)"
+				don-confirm-click="All child categories will go to root category. Products with that category will lose their category too. Are you sure you want to delete this category?">
+			<i class="fa fa-trash"></i>
+		</button>
+	</div>
+</div>

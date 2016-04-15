@@ -19,6 +19,18 @@
 					<li ng-repeat="item in items" ng-class="{active: isActive(item.link)}">
 						<a href="{{'#' + item.link}}"><span i18n="{{'common.' + item.key}}"></span></a>
 					</li>
+					<li class="dropdown" ng-class="{active: isAdminLink()}">
+						<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+						   aria-expanded="false">
+							<span i18n="{{'common.Administration'}}"></span>
+							<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="#/admin">Dashboard</a></li>
+							<li><a href="#/admin/products" i18n="common.Products"></a></li>
+							<li><a href="#/admin/categories" i18n="common.Categories"></a></li>
+						</ul>
+					</li>
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
@@ -39,7 +51,6 @@
 					<li class="dropdown">
 						<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
 						   aria-expanded="false">
-							<!--{{locale.getString('common.Cart')}} ({{cartLength()}}) -->
 							<div class="div-left">
 								<i class="fa fa-shopping-cart fa-2x"></i>
 							</div>

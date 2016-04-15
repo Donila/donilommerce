@@ -1,0 +1,109 @@
+<div class="jumbotron">
+	<div ng-show="loading">
+		<i class="fa fa-spinner fa-spin fa-4x"></i>
+	</div>
+	<form class="don-form" name="productForm" ng-show="!loading" novalidate>
+		<div class="div-left">
+			<button class="btn btn-danger" i18n="common.Cancel" ng-disabled="saving" ng-click="goToProducts()"></button>
+		</div>
+		<div class="div-left">
+			<button class="btn btn-warning" ng-click="reset()" ng-disabled="productForm.$pristine || saving">Reset
+			</button>
+		</div>
+		<div class="div-left">
+			<button class="btn btn-success" ng-click="save()" ng-disabled="productForm.$pristine || saving">
+				<span ng-show="!saving">Save</span>
+				<span ng-show="saving">Saving...</span>
+			</button>
+		</div>
+
+		<img src="{{product.thumbnail}}" class="image-big"/>
+
+		<don-messages errors="errors" messages="messages"></don-messages>
+
+		<div class="row">
+			<div class="col-md-3">
+				<label for="productName">Name</label>
+			</div>
+			<div class="col-md-9">
+				<input id="productName" name="productName" ng-model="product.name" class="form-control"/>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-3">
+				<label for="shortDescription">Short description</label>
+			</div>
+			<div class="col-md-9">
+				<input id="shortDescription" name="shortDescription" ng-model="product.shortDescription"
+					   class="form-control"/>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-3">
+				<label for="productCategory">Category</label>
+			</div>
+			<div class="col-md-9">
+				<select id="productCategory"
+						name="productCategory"
+						ng-model="product.category"
+					    class="form-control">
+					<option value="">No category</option>
+					<option ng-repeat="category in categories" value="{{category._id}}">{{category.name}}</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-3">
+				<label for="productPrice">Price</label>
+			</div>
+			<div class="col-md-9">
+				<input id="productPrice" name="productPrice" ng-model="product.price" class="form-control"
+					   type="number"/>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-3">
+				<label for="specialPriceNeeded">Special price</label>
+			</div>
+			<div class="col-md-9">
+				<input id="specialPriceNeeded" name="specialPriceNeeded" ng-model="specialPriceNeeded" type="checkbox"/>
+				<input id="specialPrice" name="specialPrice" ng-model="product.specialPrice.price" class="form-control"
+					   type="number" ng-show="specialPriceNeeded"/>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-3">
+				<label for="productThumbnail">Thumbnail</label>
+			</div>
+			<div class="col-md-9">
+				<input id="productThumbnail" name="productThumbnail" ng-model="product.thumbnail" class="form-control"/>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-3">
+				<label>Pictures</label>
+			</div>
+			<div class="col-md-9">
+				<div ng-repeat="picture in product.pictures track by $index" class="row" style="margin: 0;">
+					<div class="div-left" style="width: calc(100% - 100px);">
+						<input ng-model="product.pictures[$index]" class="form-control"/>
+					</div>
+					<button class="btn btn-danger" ng-click="removePicture(product, $index)">
+						<i class="fa fa-trash"></i>
+					</button>
+				</div>
+				<button class="btn btn-info" ng-click="addEmptyPicture(product)">Add picture
+				</button>
+			</div>
+		</div>
+
+		<label for="fullDescription">Full Description</label>
+		<text-angular id="fullDescription" name="fullDescription" ng-model="product.fullDescription"></text-angular>
+	</form>
+</div>

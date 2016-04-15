@@ -1,0 +1,12 @@
+<div class="row no-margin" ng-repeat="category in sortedCategories">
+	<h3>{{category.name}}</h3>
+	<div class="margin-left" ng-repeat="c in category.childs">
+		<h4>{{c.name}}</h4>
+		<div class="margin-left" ng-repeat="c2 in c.childs">
+			<h5>{{c2.name}}</h5>
+			<div class="margin-left" ng-repeat="c3 in c2.childs">
+				<h6>{{c3.name}}</h6>
+			</div>
+		</div>
+	</div>
+</div>

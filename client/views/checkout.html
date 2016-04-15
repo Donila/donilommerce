@@ -19,7 +19,7 @@
 				<input type="email" id="checkoutEmail" name="checkoutEmail" class="form-control"
 					   ng-model="customer.email" required=""/>
 
-				<div class="alert alert-danger" ng-show="checkoutForm.$submitted || form.checkoutEmail.$touched">
+				<div class="alert alert-danger" ng-show="checkoutForm.$submitted">
 					<span ng-show="checkoutForm.checkoutEmail.$error.required" i18n="common.EmailRequired">Tell us your email.</span>
 					<span ng-show="checkoutForm.checkoutEmail.$error.email" i18n="common.InvalidEmail"></span>
 				</div>
@@ -28,8 +28,7 @@
 				<input type="phone" id="checkoutPhone" name="checkoutPhone" class="form-control"
 					   ng-model="customer.phone" required=""/>
 
-				<div class="alert alert-danger"
-					 ng-show="checkoutForm.$submitted || checkoutForm.checkoutPhone.$touched">
+				<div class="alert alert-danger" ng-show="checkoutForm.$submitted">
 					<span ng-show="checkoutForm.checkoutPhone.$error.required" i18n="common.PhoneRequired"></span>
 				</div>
 
@@ -37,8 +36,7 @@
 				<textarea type="text" id="checkoutAddress" name="checkoutAddress" class="form-control"
 						  ng-model="customer.address" required=""/>
 
-				<div class="alert alert-danger"
-					 ng-show="checkoutForm.$submitted || checkoutForm.checkoutAddress.$touched">
+				<div class="alert alert-danger" ng-show="checkoutForm.$submitted">
 					<span ng-show="checkoutForm.checkoutAddress.$error.required" i18n="common.AddressRequired"></span>
 				</div>
 				<div class="padding-top">

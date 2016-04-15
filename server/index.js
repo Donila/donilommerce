@@ -5,6 +5,9 @@ var mongoose = require('mongoose');
 var config = require('./config');
 var http = require('http');
 var util = require('util');
+var morgan = require('morgan');
+var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
 
 var app = express();
 var server = http.createServer(app);
@@ -15,8 +18,13 @@ mongoose.connection.on('error', function (err) {
     process.exit(-1);
 });
 
-var routes = require('./routes')(app);
 app.use(express.static('client'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(methodOverride());
+app.use(morgan('dev'));
+
+var routes = require('./routes')(app);
 
 // Start server
 function startServer() {

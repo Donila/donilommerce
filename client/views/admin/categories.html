@@ -1,0 +1,22 @@
+<div class="don-area">
+	<don-messages errors="errors" messages="messages"></don-messages>
+	<div style="text-align: center;">
+		<button type="button" class="btn btn-primary" ng-model="listView" uib-btn-checkbox btn-checkbox-true="true" btn-checkbox-false="false">
+			<span ng-show="!listView">Show List</span>
+			<span ng-show="listView">Show Tree</span>
+		</button>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12" ng-show="listView">
+			<h2>Categories list</h2>
+			<ng-include src="'views/admin/categories/list.html'"></ng-include>
+		</div>
+
+		<div class="col-md-12" ng-show="!listView">
+			<h2>Categories tree</h2>
+			<ng-include src="'views/admin/categories/tree.html'"></ng-include>
+		</div>
+	</div>
+
+</div>

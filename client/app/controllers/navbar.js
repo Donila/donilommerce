@@ -35,6 +35,10 @@ angular.module('Donilommerce')
 			return $location.path() === link;
 		};
 
+		$scope.isAdminLink = function() {
+			return $location.path().indexOf('/admin') > -1;
+		};
+
 		$scope.getCurrency = function() {
 			return $rootScope.currency;
 		};

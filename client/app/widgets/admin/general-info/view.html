@@ -1,0 +1,14 @@
+<div class="don-widget panel panel-info" ng-controller="adminWidgetGeneralInfoCtrl">
+
+
+	<div class="panel-heading">General info</div>
+	<div class="panel-body">
+		<div ng-hide="isLoading()">
+			<i class="fa fa-spin fa-spinner"></i>
+		</div>
+		<div ng-show="isLoading()">
+			<div>Overall products: {{products.length}}</div>
+			<div>Overall categories: {{categories.length}}</div>
+		</div>
+	</div>
+</div>

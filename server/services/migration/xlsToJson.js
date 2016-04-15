@@ -37,11 +37,11 @@ module.exports = {
 		return products;
 	},
 
-	map: function(fileName) {
+	mapProducts: function(fileName) {
 		var productsParsed = this.parse(fileName);
 
 		var products = [];
-		var id = 0;
+
 		_.forEach(productsParsed, function(prod) {
 			var thumb;
 			var pictures = [];
@@ -68,22 +68,43 @@ module.exports = {
 			}
 
 			var product = {
-				_id: id++,
 				name: prod.name.h,
 				price: prod.price.v,
 				thumbnail: thumb,
 				pictures: pictures,
 				shortDescription: prod.shortDescription ? prod.shortDescription.h : '',
-				fullDescription: prod.fullDescription ? prod.fullDescription.h : ''
+				fullDescription: prod.fullDescription ? prod.fullDescription.h : '',
 			};
 
 			if(specialPrice) {
 				product.specialPrice = specialPrice;
 			}
 
+			if(prod.categoryIds) {
+				var category = prod.categoryIds.h.split(';')[0];
+				product.categoryIds = category;
+			}
+
 			products.push(product);
 		});
 
 		return products;
+	},
+
+	mapCategories: function(fileName) {
+		var productsParsed = this.parse(fileName);
+		var categories = [];
+
+		_.forEach(productsParsed, function(prod) {
+
+			if(prod.categoryIds) {
+				var category = prod.categoryIds.h.split(';')[0];
+				if(categories.indexOf(category) < 0) {
+					categories.push(category);
+				}
+			}
+		});
+
+		return categories;
 	}
 };

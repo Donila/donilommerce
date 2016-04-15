@@ -15,6 +15,7 @@
 	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
 	<link rel="stylesheet" href="bower_components/angular-bootstrap/ui-bootstrap-csp.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<link rel='stylesheet' href='bower_components/textAngular/dist/textAngular.css'>
 	<!-- endbuild -->
 </head>
 <body ng-app="Donilommerce">
@@ -71,24 +72,41 @@
 <script src="bower_components/angular-touch/angular-touch.js"></script>
 <script src="bower_components/angular-localization/angular-localization.js"></script>
 
+<script src='bower_components/textAngular/dist/textAngular-rangy.min.js'></script>
+<script src='bower_components/textAngular/dist/textAngular-sanitize.min.js'></script>
+<script src='bower_components/textAngular/dist/textAngular.min.js'></script>
+
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
 
 <!-- endbuild -->
 
 <script src="app/app.js"></script>
+
+<script src="app/controllers/admin/admin.js"></script>
+<script src="app/controllers/admin/product.js"></script>
+<script src="app/controllers/admin/products.js"></script>
+<script src="app/controllers/admin/categories.js"></script>
+
+<script src="app/widgets/admin/general-info/controller.js"></script>
+<script src="app/widgets/client/discount-items/controller.js"></script>
+
 <script src="app/controllers/main.js"></script>
 <script src="app/controllers/cart.js"></script>
 <script src="app/controllers/checkout.js"></script>
 <script src="app/controllers/navbar.js"></script>
 <script src="app/controllers/products.js"></script>
 <script src="app/controllers/product.js"></script>
+
 <script src="app/services/products.js"></script>
+<script src="app/services/categories.js"></script>
 <script src="app/services/cart.js"></script>
 <script src="app/services/currency.js"></script>
 <script src="app/services/language.js"></script>
 
 <script src="app/directives/price/price.js"></script>
 <script src="app/directives/price/simplePrice.js"></script>
+<script src="app/directives/messages/messages.js"></script>
+<script src="app/directives/confirmation/confirmedClick.js"></script>
 
 <script src="app/modals/addedToCart.js"></script>
 </body>

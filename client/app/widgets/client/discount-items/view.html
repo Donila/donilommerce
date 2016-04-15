@@ -1,0 +1,26 @@
+<div class="don-widget" ng-controller="widgetDiscountItemsCtrl">
+	<div class="panel panel-success">
+		<div class="panel-heading">
+			<h3>Today's discounts</h3>
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-md-4" ng-repeat="product in discountProducts">
+					<div>
+						<a href="{{'#/products/' + product._id}}">
+							<img src="{{product.thumbnail}}" class="img-responsive"/>
+						</a>
+					</div>
+					<div>
+						<a href="{{'#/products/' + product._id}}">
+							<h6>{{product.name}}</h6>
+						</a>
+					</div>
+					<div>
+						<don-price product="product"></don-price>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

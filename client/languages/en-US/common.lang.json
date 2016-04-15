@@ -10,6 +10,7 @@
 	"Remove": "Remove",
 	"Welcome": "Welcome to market!",
 	"Products": "Products",
+	"Categories": "Categories",
 	"ProductAdded": "Product have been added to your cart.",
 	"ToCart": "Go to cart",
 	"AddToCart": "Add to cart",
@@ -25,5 +26,7 @@
 	"PhoneRequired": "Please tell us your phone number",
 	"AddressRequired": "Address is required.",
 	"OrderSubmitted": "Order was successfully submitted",
-	"Ok": "Ok"
+	"Administration": "Administration",
+	"Ok": "Ok",
+	"Cancel": "Cancel"
 }

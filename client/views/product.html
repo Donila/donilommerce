@@ -20,6 +20,12 @@
 		<button class="btn btn-success" ng-click="addToCart(product)">{{locale.getString('common.AddToCart')}} <i class="glyphicon glyphicon-shopping-cart"></i>
 		</button>
 
+		<a href="{{'#/admin/products/' + product._id}}">
+			<button class="btn btn-info"><i class="fa fa-pencil"></i>
+			</button>
+		</a>
+
+
 		<h5>{{product.shortDescription}}</h5>
 		<span ng-bind-html="product.fullDescription"></span>
 	</div>

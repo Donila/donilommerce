@@ -1,0 +1,19 @@
+<div class="row alert alert-success" ng-repeat="message in messages">
+	<div class="col-md-11">{{message}}</div>
+
+	<div class="col-md-1">
+		<a ng-click="removeMessage(message)">
+			<i class="fa fa-times fa-2x"></i>
+		</a>
+	</div>
+</div>
+<div class="row alert alert-danger" ng-repeat="error in errors">
+	<div class="col-md-11">{{error}}</div>
+
+	<div class="col-md-1">
+		<a ng-click="removeError(error)">
+			<i class="fa fa-times fa-2x"></i>
+		</a>
+	</div>
+</div>
+

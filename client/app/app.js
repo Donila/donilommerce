@@ -19,7 +19,8 @@ angular
 		'ui.bootstrap',
 		'ngLocalize',
 		'ngLocalize.Config',
-		'ngLocalize.InstalledLanguages'
+		'ngLocalize.InstalledLanguages',
+		'textAngular'
 	])
 	.config(function ($routeProvider) {
 		$routeProvider
@@ -47,6 +48,31 @@ angular
 				templateUrl: 'views/products.html',
 				controller: 'ProductsCtrl',
 				controllerAs: 'products'
+			})
+			.when('/admin', {
+				templateUrl: 'views/admin.html',
+				controller: 'AdminCtrl',
+				controllerAs: 'admin'
+			})
+			.when('/admin/products/new', {
+				templateUrl: 'views/admin/product.html',
+				controller: 'AdminProductCtrl',
+				controllerAs: 'adminproductnew'
+			})
+			.when('/admin/products/:id', {
+				templateUrl: 'views/admin/product.html',
+				controller: 'AdminProductCtrl',
+				controllerAs: 'adminproduct'
+			})
+			.when('/admin/products/', {
+				templateUrl: 'views/admin/products.html',
+				controller: 'AdminProductsCtrl',
+				controllerAs: 'adminproducts'
+			})
+			.when('/admin/categories/', {
+				templateUrl: 'views/admin/categories.html',
+				controller: 'AdminCategoriesCtrl',
+				controllerAs: 'admincategories'
 			})
 			.otherwise({
 				redirectTo: '/'
